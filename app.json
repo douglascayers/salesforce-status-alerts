@@ -6,7 +6,10 @@
     "salesforce",
     "nodejs"
   ],
-  "repository": "https://github.com/DouglasCAyers/salesforce-status-alerts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DouglasCAyers/salesforce-status-alerts"
+  },
   "image": "heroku/nodejs",
   "env": {
     "EMAIL_ALERTS_TO": {
