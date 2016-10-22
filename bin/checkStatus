@@ -14,9 +14,9 @@
 var prettyjson = require('prettyjson');
 var request = require('request');
 var moment = require('moment-timezone');
-var redis = require("redis");
+// var redis = require("node-redis");
 
-var redis_client = redis.createClient();
+// var redis_client = redis.createClient();
 var instanceName = process.env.INSTANCE_KEY;
 
 var options = {
