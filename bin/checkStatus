@@ -94,7 +94,7 @@ function sendEmail( options ) {
 
     // https://devcenter.heroku.com/articles/sendgrid#node-js
 
-    console.log( 'Sending email: ' + jsbeautify( message ) );
+    console.log( 'Sending email: ' + jsbeautify( options ) );
 
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email( options.from );
