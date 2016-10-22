@@ -25,26 +25,6 @@
     "request": "^2.75.0",
     "sendgrid": "^4.7.0"
   },
-  "env": {
-    "EMAIL_ALERTS_TO": {
-      "description": "Who to send notification emails to",
-      "value": "you@example.org",
-      "required": true
-    },
-    "INSTANCE_KEY": {
-      "description": "Which instance whose status to check",
-      "value": "NA5",
-      "required": true
-    }
-  },
-  "addons": [
-      "heroku-redis:hobby-dev",
-      "scheduler:standard",
-      "sendgrid:starter"
-  ],
-  "buildpacks": [
-    "heroku/nodejs"
-  ],
   "license": "MIT",
   "private": true
 }
