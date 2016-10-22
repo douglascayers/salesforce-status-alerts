@@ -1,1 +1,1 @@
-web: node ./bin/checkStatus
+web: node index.js

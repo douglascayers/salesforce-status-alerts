@@ -13,11 +13,12 @@
   "engines": {
     "node": "4.6.1"
   },
-  "main": "bin/checkStatus",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/checkStatus"
+    "start": "node index.js"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "moment": "^2.15.1",
     "moment-timezone": "^0.5.7",
     "redis": "^2.6.2",
