@@ -3,6 +3,7 @@
 /*
  * Resources
  *      - http://www.spacjer.com/blog/2014/02/10/defining-node-dot-js-task-for-heroku-scheduler/
+ *      - https://devcenter.heroku.com/articles/scheduler
  *      - https://devcenter.heroku.com/articles/sendgrid#node-js
  *      - https://www.npmjs.com/package/moment-timezone
  *      - https://www.npmjs.com/package/node-redis
@@ -10,9 +11,12 @@
  *      - https://www.npmjs.com/package/sendgrid
  */
 
+var prettyjson = require('prettyjson');
 var request = require('request');
 var moment = require('moment-timezone');
+var redis = require("redis");
 
+var redis_client = redis.createClient();
 var instanceName = process.env.INSTANCE_KEY;
 
 var options = {
@@ -47,14 +51,14 @@ request( options , function( error, response, body ) {
 
             if ( incidentDt.isAfter( lastStatusCheckDt ) ) {
 
-                message.incidents[i] = {
+                message.incidents.push({
                     'ID' : incident.id,
                     'Root Cause' : incident.message.rootCause,
                     'Action Plan' : incident.message.actionPlan,
                     'Path to Resolution' : incident.message.pathToResolution,
                     'Additional Info' : incident.additionalInformation,
                     'Last Updated' : incident.updatedAt
-                }
+                });
 
             }
 
@@ -66,7 +70,7 @@ request( options , function( error, response, body ) {
                 "from": "trust@salesforce.com",
                 "to": process.env.EMAIL_ALERTS_TO,
                 "subject": "Instance Status Alert",
-                "textBody": JSON.stringify( message, null, 4 )
+                "textBody": prettyjson.render( message )
             });
 
         }
@@ -92,7 +96,7 @@ function sendEmail( options ) {
 
     // https://devcenter.heroku.com/articles/sendgrid#node-js
 
-    console.log( 'Sending email: ' + JSON.stringify( options, null, 4 ) );
+    console.log( 'Sending email: ' + prettyjson.render( options ) );
 
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email( options.from );
