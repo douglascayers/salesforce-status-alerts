@@ -10,6 +10,9 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "moment": "^2.15.1",
+    "moment-timezone": "^0.5.7",
+    "node-redis": "^0.1.7",
     "request": "^2.75.0",
     "sendgrid": "^4.7.0"
   },
