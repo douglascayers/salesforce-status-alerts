@@ -13,10 +13,6 @@
 
 // redis database
 var redis = require('redis');
-
-// to provide promise library over async redis client
-require('bluebird').promisifyAll( redis.RedisClient.prototype );
-
 var redis_client = redis.createClient( process.env.REDIS_URL );
 
 // for making http requests to trust website
@@ -43,9 +39,11 @@ request( options , function( error, response, body ) {
     if ( !error ) {
 
         // when did we last check?
-        redis_client.getAsync( 'lastStatusCheckDateTime' ).then( function( result ) {
+        redis_client.get( 'lastStatusCheckDateTime', function( error, result ) {
 
-            console.log( result );
+            console.log( 'redis get lastStatusCheckDateTime' );
+            console.log( 'error=' + error );
+            console.log( 'result=' + result );
 
             if ( result ) {
                 lastStatusCheckDt = moment( result ).startOf( 'hour' );
@@ -95,12 +93,11 @@ request( options , function( error, response, body ) {
 
             }
 
-        }).then( function() {
+            redis_client.set( 'lastStatusCheckDateTime', currentStatusCheckDt.format(), function( error, result ) {
 
-            redis_client.set( 'lastStatusCheckDateTime', currentStatusCheckDt, function( error, result ) {
-
-                console.error( error );
-                console.log( result );
+                console.log( 'redis set lastStatusCheckDateTime' );
+                console.log( 'error=' + error );
+                console.log( 'result=' + result );
 
             });
 
