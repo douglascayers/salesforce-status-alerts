@@ -1,9 +1,9 @@
 {
   "name": "salesforce-status-alerts",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "Notifies you of instance alerts from trust.salesforce.com",
   "engines": {
-    "node": "5.9.1"
+    "node": "4.6.1"
   },
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,6 @@
   "keywords": [
     "salesforce"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }
