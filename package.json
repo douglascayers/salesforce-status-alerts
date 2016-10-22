@@ -10,7 +10,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "request": "^2.75.0"
+    "request": "^2.75.0",
+    "sendgrid": "^4.7.0"
   },
   "repository": {
     "type": "git",
