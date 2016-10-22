@@ -48,7 +48,7 @@ request( options , function( error, response, body ) {
             if ( result ) {
                 lastStatusCheckDt = moment( result ).startOf( 'hour' );
             } else {
-                lastStatusCheckDt = moment().subtract( 1, 'hours' ).startOf( 'hour' );
+                lastStatusCheckDt = moment().subtract( 1, 'days' ).startOf( 'hour' );
             }
 
             var message = {
@@ -82,7 +82,7 @@ request( options , function( error, response, body ) {
 
             }
 
-            if ( message.status != 'OK' || message.incidents.length > 0 ) {
+            if ( message.Status != 'OK' || message.incidents.length > 0 ) {
 
                 sendEmail({
                     "from": "trust@salesforce.com",
@@ -93,6 +93,7 @@ request( options , function( error, response, body ) {
 
             }
 
+            // remember the last time we checked instance status
             redis_client.set( 'lastStatusCheckDateTime', currentStatusCheckDt.format(), function( error, result ) {
 
                 console.log( 'redis set lastStatusCheckDateTime' );
