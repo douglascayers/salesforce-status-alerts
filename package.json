@@ -10,7 +10,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "js-beautify": "^1.6.4",
     "moment": "^2.15.1",
     "moment-timezone": "^0.5.7",
     "node-redis": "^0.1.7",

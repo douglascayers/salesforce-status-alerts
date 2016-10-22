@@ -11,7 +11,6 @@
  *      - https://www.npmjs.com/package/sendgrid
  */
 
-var jsbeautify = require('js-beautify').js_beautify;
 var request = require('request');
 var moment = require('moment-timezone');
 
@@ -68,7 +67,7 @@ request( options , function( error, response, body ) {
                 "from": "trust@salesforce.com",
                 "to": process.env.EMAIL_ALERTS_TO,
                 "subject": "Instance Status Alert",
-                "textBody": jsbeautify( message )
+                "textBody": JSON.stringify( message, null, 4 )
             });
 
         }
@@ -94,7 +93,7 @@ function sendEmail( options ) {
 
     // https://devcenter.heroku.com/articles/sendgrid#node-js
 
-    console.log( 'Sending email: ' + jsbeautify( options ) );
+    console.log( 'Sending email: ' + JSON.stringify( options, null, 4 ) );
 
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email( options.from );
