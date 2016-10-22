@@ -7,18 +7,51 @@ var options = {
     json : true
 };
 
-console.log('Executing request, options=' + JSON.stringify( options ) );
+console.log( 'Executing request, options=' + JSON.stringify( options ) );
 
 request( options , function( error, response, body ) {
 
-    console.log( body );
+    if ( !error ) {
 
-    sendEmail({
-        "from": "donotreply@example.com",
-        "to": "douglascayers@gmail.com",
-        "subject": "Test",
-        "textBody": "Test Message"
-    });
+        console.log( body );
+
+        var message =
+            'Instance: ' + body.key + '\n' +
+            'Location: ' + body.location + '\n' +
+            'Environment: ' + body.environment + '\n' +
+            'Release: ' + body.releaseVersion + '\n' +
+            'Status: ' + body.status + '\n\n' +
+            '[Incidents]'
+        ;
+
+        for ( var i in body.Incidents ) {
+
+            var incident = body.Incidents[i];
+
+            message +=
+                '    ID: ' + incident.id + '\n' +
+                '    Root Cause: ' + incident.message.rootCause + '\n' +
+                '    Action Plan: ' + incident.message.actionPlan + '\n' +
+                '    Path to Resolution: ' + incident.message.pathToResolution + '\n' +
+                '    Additional Info: ' + incident.additionalInformation + '\n' +
+                '    Last Updated: ' + incident.updatedAt + '\n\n';
+
+        }
+
+        sendEmail({
+            "from": "trust@salesforce.com",
+            "to": "douglascayers@gmail.com",
+            "subject": "Instance Status Alert",
+            "textBody": message
+        });
+
+
+    } else {
+
+        console.log( error );
+        console.log( body );
+
+    }
 
 });
 
