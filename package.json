@@ -1,6 +1,6 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.2.5",
+  "name": "salesforce-status-alerts",
+  "version": "0.1",
   "description": "A sample Node.js app using Express 4",
   "engines": {
     "node": "5.9.1"
@@ -10,17 +10,14 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "ejs": "2.4.1",
-    "express": "4.13.3"
+    "request": "^2.75.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": ""
   },
   "keywords": [
-    "node",
-    "heroku",
-    "express"
+    "salesforce"
   ],
   "license": "MIT"
 }
