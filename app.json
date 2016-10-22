@@ -1,6 +1,6 @@
 {
   "name": "Salesforce Status Alerts",
-  "description": "Notifies you of instance alerts from trust.salesforce.com",
+  "description": "Notifies you of instance alerts from status.salesforce.com",
   "repository": "",
   "keywords": ["salesforce"]
 }
