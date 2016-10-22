@@ -11,12 +11,10 @@
  *      - https://www.npmjs.com/package/sendgrid
  */
 
-var prettyjson = require('prettyjson');
+var jsbeautify = require('js-beautify').js_beautify;
 var request = require('request');
 var moment = require('moment-timezone');
-// var redis = require("node-redis");
 
-// var redis_client = redis.createClient();
 var instanceName = process.env.INSTANCE_KEY;
 
 var options = {
@@ -70,7 +68,7 @@ request( options , function( error, response, body ) {
                 "from": "trust@salesforce.com",
                 "to": process.env.EMAIL_ALERTS_TO,
                 "subject": "Instance Status Alert",
-                "textBody": prettyjson.render( message )
+                "textBody": jsbeautify( message )
             });
 
         }
@@ -96,7 +94,7 @@ function sendEmail( options ) {
 
     // https://devcenter.heroku.com/articles/sendgrid#node-js
 
-    console.log( 'Sending email: ' + prettyjson.render( options ) );
+    console.log( 'Sending email: ' + jsbeautify( message ) );
 
     var helper = require('sendgrid').mail;
     var from_email = new helper.Email( options.from );
