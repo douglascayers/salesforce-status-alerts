@@ -2,6 +2,15 @@
   "name": "salesforce-status-alerts",
   "version": "0.0.1",
   "description": "Notifies you of instance alerts from status.salesforce.com",
+  "keywords": [
+    "salesforce",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DouglasCAyers/salesforce-status-alerts"
+  },
+  "image": "heroku/nodejs",
   "engines": {
     "node": "4.6.1"
   },
@@ -16,12 +25,25 @@
     "request": "^2.75.0",
     "sendgrid": "^4.7.0"
   },
-  "repository": {
-    "type": "git",
-    "url": ""
+  "env": {
+    "EMAIL_ALERTS_TO": {
+      "description": "Who to send notification emails to",
+      "value": "you@example.org",
+      "required": true
+    },
+    "INSTANCE_KEY": {
+      "description": "Which instance whose status to check",
+      "value": "NA5",
+      "required": true
+    }
   },
-  "keywords": [
-    "salesforce"
+  "addons": [
+      "heroku-redis:hobby-dev",
+      "scheduler:standard",
+      "sendgrid:starter"
+  ],
+  "buildpacks": [
+    "heroku/nodejs"
   ],
   "license": "MIT",
   "private": true
