@@ -1,3 +1,6 @@
+Please note, this project is no longer necessary as Salesforce now provides email and RSS subscription options for instance alerts.
+https://trust.salesforce.com/en/trust/trust-notification-user-guide/
+
 # Salesforce Status Alerts
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
